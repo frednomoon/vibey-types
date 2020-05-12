@@ -1,4 +1,4 @@
-export interface State {
+export interface Dataset {
   cat: {
     [CATALOGUE_NUMBER: string]: {
       juno: Info
