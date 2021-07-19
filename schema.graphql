@@ -1,0 +1,16 @@
+enum Kind {
+  ARTIST
+  LABEL
+}
+
+type Favourite {
+  kind: Kind!
+  name: String!
+  userUID: ID!
+}
+
+type User {
+  userUID: ID! @unique
+  email: String!
+  name: String
+}
