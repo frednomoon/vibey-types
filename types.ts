@@ -1,4 +1,9 @@
-export interface Dataset {
+export type DiffResponse = {
+  latest: string
+  diff: Dataset
+}
+
+export type Dataset = {
   cat: {
     [CATALOGUE_NUMBER: string]: {
       juno: Info
@@ -17,7 +22,7 @@ export interface Dataset {
   }
 }
 
-export interface Info {
+export type Info = {
   expected: string
   outOfStock: boolean
   artist: string
@@ -27,7 +32,7 @@ export interface Info {
   title: string
 }
 
-export interface Release {
+export type Release = {
   cat: string
   info: Info
 }
