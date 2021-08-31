@@ -1,3 +1,16 @@
+type User {
+  netlifyID: ID! @unique(index: "unique_netlify_id")
+  stripeID: ID! @unique(index: "unique_stripe_id")
+  favourites: [Favourite] @relation
+}
+
+type Query {
+  allUsers: [User]
+  allFavourites: [Favourite]
+  getUserByNetlifyID(netlifyID: ID!): User!
+  getUserByStripeID(stripeID: ID!): User!
+}
+
 enum Kind {
   ARTIST
   LABEL
@@ -6,11 +19,7 @@ enum Kind {
 type Favourite {
   kind: Kind!
   name: String!
-  userUID: ID!
-}
-
-type User {
-  userUID: ID! @unique
-  email: String!
-  name: String
+  user: User!
+  profile: String
+  priority: Boolean
 }
