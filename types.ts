@@ -31,14 +31,3 @@ export interface Release {
   cat: string
   info: Info
 }
-
-export interface NewFavourite {
-  isArtist: boolean
-  name: string
-}
-
-export interface Favourite {
-  isArtist: boolean
-  name: string
-  userUID: string
-}

@@ -1,0 +1,92 @@
+directive @embedded on OBJECT
+directive @collection(name: String!) on OBJECT
+directive @index(name: String!) on FIELD_DEFINITION
+directive @resolver(
+  name: String
+  paginated: Boolean! = false
+) on FIELD_DEFINITION
+directive @relation(name: String) on FIELD_DEFINITION
+directive @unique(index: String) on FIELD_DEFINITION
+scalar Date
+
+type Favourite {
+  name: String!
+  priority: Boolean
+  _id: ID!
+  profile: String
+  kind: Kind!
+  user: User!
+  _ts: Long!
+}
+
+input FavouriteInput {
+  kind: Kind!
+  name: String!
+  user: FavouriteUserRelation
+  profile: String
+  priority: Boolean
+}
+
+type FavouritePage {
+  data: [Favourite]!
+  after: String
+  before: String
+}
+
+input FavouriteUserRelation {
+  create: UserInput
+  connect: ID
+}
+
+enum Kind {
+  ARTIST
+  LABEL
+}
+
+scalar Long
+
+type Mutation {
+  updateUser(id: ID!, data: UserInput!): User
+  deleteFavourite(id: ID!): Favourite
+  createUser(data: UserInput!): User!
+  createFavourite(data: FavouriteInput!): Favourite!
+  deleteUser(id: ID!): User
+  updateFavourite(id: ID!, data: FavouriteInput!): Favourite
+}
+
+type Query {
+  allUsers(_size: Int, _cursor: String): UserPage!
+  getUserByStripeID(stripeID: ID!): User!
+  findFavouriteByID(id: ID!): Favourite
+  findUserByID(id: ID!): User
+  allFavourites(_size: Int, _cursor: String): FavouritePage!
+  getUserByNetlifyID(netlifyID: ID!): User!
+}
+
+scalar Time
+
+type User {
+  stripeID: ID!
+  _id: ID!
+  netlifyID: ID!
+  favourites(_size: Int, _cursor: String): FavouritePage!
+  _ts: Long!
+}
+
+input UserFavouritesRelation {
+  create: [FavouriteInput]
+  connect: [ID]
+  disconnect: [ID]
+}
+
+input UserInput {
+  netlifyID: ID!
+  stripeID: ID!
+  favourites: UserFavouritesRelation
+}
+
+type UserPage {
+  data: [User]!
+  after: String
+  before: String
+}
