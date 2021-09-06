@@ -61,6 +61,7 @@ type Query {
   findUserByID(id: ID!): User
   allFavourites(_size: Int, _cursor: String): FavouritePage!
   getUserByNetlifyID(netlifyID: ID!): User!
+  favouritesByKind(_size: Int, _cursor: String, kind: Kind): FavouritePage!
 }
 
 scalar Time

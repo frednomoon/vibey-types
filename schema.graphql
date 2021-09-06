@@ -7,6 +7,7 @@ type User {
 type Query {
   allUsers: [User]
   allFavourites: [Favourite]
+  favouritesByKind(kind: Kind): [Favourite]
   getUserByNetlifyID(netlifyID: ID!): User!
   getUserByStripeID(stripeID: ID!): User!
 }
