@@ -108,6 +108,7 @@ export type Query = {
   findUserByID?: Maybe<User>;
   allFavourites: FavouritePage;
   getUserByNetlifyID: User;
+  favouritesByKind: FavouritePage;
 };
 
 
@@ -140,6 +141,13 @@ export type QueryAllFavouritesArgs = {
 
 export type QueryGetUserByNetlifyIdArgs = {
   netlifyID: Scalars['ID'];
+};
+
+
+export type QueryFavouritesByKindArgs = {
+  _size?: Maybe<Scalars['Int']>;
+  _cursor?: Maybe<Scalars['String']>;
+  kind?: Maybe<Kind>;
 };
 
 
