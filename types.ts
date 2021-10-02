@@ -25,6 +25,7 @@ export type Dataset = {
 export type Info = {
   expected: string
   outOfStock: boolean
+  lowStock?: boolean
   artist: string
   label: string
   cat: string
