@@ -1,9 +1,10 @@
 export type DiffResponse = {
   latest: string
-  diff: Dataset
+  diff: Dataset1
 }
 
-export type Dataset = {
+export type Dataset1 = {
+  _version: 1
   cat: {
     [CATALOGUE_NUMBER: string]: {
       juno: Info
@@ -22,8 +23,24 @@ export type Dataset = {
   }
 }
 
+// export type Dataset2 = {
+//   _version: 2
+//   cat: {
+//     [CATALOGUE_NUMBER: string]: {
+//       juno: Info
+//       redeye: Info
+//     }
+//   }
+//   labels: {
+//     [LABEL_ID: string]: string[]
+//   }
+//   artists: {
+//     [ARTIST_ID: string]: string[]
+//   }
+// }
+
 export type Info = {
-  expected: string
+  expected?: string
   outOfStock: boolean
   lowStock?: boolean
   artist: string
