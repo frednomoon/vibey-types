@@ -7,8 +7,8 @@ export type Dataset1 = {
   _version: 1
   cat: {
     [CATALOGUE_NUMBER: string]: {
-      juno: Info
-      redeye: Info
+      juno?: Info
+      redeye?: Info
     }
   }
   labels: {
