@@ -6,10 +6,7 @@ export type DiffResponse = {
 export type Dataset1 = {
   _version: 1
   cat: {
-    [CATALOGUE_NUMBER: string]: {
-      juno?: Info
-      redeye?: Info
-    }
+    [CATALOGUE_NUMBER: string]: JunoRelease | RedeyeRelease
   }
   labels: {
     [LABEL_ID: string]: {
@@ -51,6 +48,13 @@ export type Info = {
 }
 
 export type Release = {
-  cat: string
-  info: Info
+  juno?: Info
+  redeye?: Info
+}
+
+export interface JunoRelease extends Release {
+  juno: Info
+}
+export interface RedeyeRelease extends Release {
+  redeye: Info
 }
